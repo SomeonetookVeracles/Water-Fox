@@ -1,0 +1,875 @@
+.enable-all-btn {
+            padding: 8px 16px;
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firefox CSS Customizer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #fafafa;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: 300;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .notice {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .notice strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+
+        .section-label {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .profile-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .profile-item {
+            padding: 16px 20px;
+            border: 2px solid #eee;
+            background: #fafafa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            color: #666;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .profile-item:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .profile-item.active {
+            border-color: #667eea;
+            color: #333;
+            background: white;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+        }
+
+        .profile-name {
+            font-weight: 500;
+        }
+
+        .profile-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ddd;
+        }
+
+        .status-indicator.enabled {
+            background: #27ae60;
+        }
+
+        .status-indicator.disabled {
+            background: #e74c3c;
+        }
+
+        .enable-all-btn {
+            padding: 8px 16px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .enable-all-btn:hover {
+            background: #5a67d8;
+        }
+
+        .enable-all-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+        }
+
+        .template-item {
+            padding: 20px 16px;
+            border: 2px solid #eee;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .template-item:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .template-name {
+            font-size: 13px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .editor {
+            width: 100%;
+            height: 350px;
+            border: 2px solid #eee;
+            background: #fdfdfd;
+            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            padding: 20px;
+            resize: vertical;
+            color: #333;
+            border-radius: 6px;
+            transition: border-color 0.3s ease;
+        }
+
+        .editor:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-radius: 6px;
+        }
+
+        .btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .btn:disabled {
+            border-color: #ddd;
+            color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn:disabled:hover {
+            background: white;
+            color: #ccc;
+        }
+
+        .btn.primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn.primary:hover {
+            background: #5a67d8;
+        }
+
+        .btn.primary:disabled {
+            background: #ddd;
+            color: #999;
+            border-color: #ddd;
+        }
+
+        .btn.success {
+            background: #27ae60;
+            border-color: #27ae60;
+            color: white;
+        }
+
+        .status {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+            min-height: 20px;
+            padding: 12px;
+            border-radius: 6px;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .loading {
+            color: #666;
+            font-style: italic;
+            font-size: 14px;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+            font-size: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .tab-selector {
+            display: flex;
+            margin-bottom: 16px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            padding: 4px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 8px 16px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: #333;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .css-type-info {
+            margin-top: 12px;
+        }
+
+        .info-panel {
+            font-size: 14px;
+            color: #666;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 3px solid #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .template-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+            
+            .actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .profile-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">🦊 Firefox CSS Customizer</h1>
+            <p class="subtitle">Customize Firefox's interface and web content</p>
+        </div>
+
+        <div class="notice">
+            <strong>⚠️ Important Notice</strong>
+            This tool will automatically enable userChrome.css support in your Firefox profiles. 
+            Restart Firefox after applying changes to see customizations.
+            <div id="firefoxStatus" class="firefox-status"></div>
+        </div>
+
+        <div class="section">
+            <div class="section-label">
+                Firefox Profiles
+                <div class="profile-actions">
+                    <button class="action-btn" id="validateBtn">Validate All</button>
+                    <button class="enable-all-btn" id="enableAllBtn">Enable All Profiles</button>
+                </div>
+            </div>
+            <div class="profile-grid" id="profileGrid">
+                <div class="loading">🔍 Loading Firefox profiles...</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-label">CSS Type</div>
+            <div class="tab-selector">
+                <button class="tab-btn active" data-css-type="chrome">userChrome.css</button>
+                <button class="tab-btn" data-css-type="content">userContent.css</button>
+            </div>
+            <div class="css-type-info">
+                <div id="chromeInfo" class="info-panel">
+                    <strong>userChrome.css</strong> - Customizes Firefox's user interface (toolbars, tabs, menus)
+                </div>
+                <div id="contentInfo" class="info-panel hidden">
+                    <strong>userContent.css</strong> - Customizes web page content and appearance
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-label">Templates</div>
+            <div class="template-grid" id="templateGrid">
+                <!-- Templates will be loaded dynamically -->
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-label">CSS Editor</div>
+            <textarea class="editor" id="cssEditor" placeholder="Select a profile and CSS type to begin editing..."></textarea>
+        </div>
+
+        <div class="actions">
+            <button class="btn" id="clearBtn">Clear</button>
+            <button class="btn" id="loadBtn" disabled>Reload</button>
+            <button class="btn primary" id="applyBtn" disabled>Apply Changes</button>
+        </div>
+
+        <div class="status" id="status"></div>
+    </div>
+
+    <script>
+        class FirefoxCSSCustomizer {
+            constructor() {
+                this.currentProfile = null;
+                this.currentCSSType = 'chrome';
+                this.currentFileId = null;
+                this.profiles = [];
+                this.templates = {};
+                this.init();
+            }
+
+            async init() {
+                this.bindEvents();
+                await this.loadProfiles();
+                await this.loadTemplates();
+            }
+
+            bindEvents() {
+                // Clear button
+                document.getElementById('clearBtn').addEventListener('click', () => {
+                    document.getElementById('cssEditor').value = '';
+                    this.updateStatus('Editor cleared');
+                    this.updateButtons();
+                });
+
+                // Apply button
+                document.getElementById('applyBtn').addEventListener('click', () => {
+                    this.applyChanges();
+                });
+
+                // Reload button
+                document.getElementById('loadBtn').addEventListener('click', () => {
+                    this.loadCurrentCSS();
+                });
+
+                // Editor input
+                document.getElementById('cssEditor').addEventListener('input', () => {
+                    this.updateButtons();
+                });
+
+                // CSS type tabs
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        this.switchCSSType(e.target.dataset.cssType);
+                    });
+                });
+
+                // Enable all profiles button
+                document.getElementById('enableAllBtn').addEventListener('click', () => {
+                    this.enableAllProfiles();
+                });
+            }
+
+            async loadProfiles() {
+                try {
+                    const response = await fetch('/api/profiles');
+                    this.profiles = await response.json();
+                    
+                    const grid = document.getElementById('profileGrid');
+                    
+                    if (this.profiles.length === 0) {
+                        grid.innerHTML = '<div class="empty-state">❌ No Firefox profiles found<br><small>Make sure Firefox is installed and has been run at least once</small></div>';
+                        return;
+                    }
+
+                    // Check userChrome status for each profile
+                    for (let profile of this.profiles) {
+                        try {
+                            const statusResponse = await fetch(`/api/firefox/check-userchrome/${profile.name}`);
+                            const statusData = await statusResponse.json();
+                            profile.userChromeEnabled = statusData.enabled;
+                        } catch (error) {
+                            profile.userChromeEnabled = false;
+                        }
+                    }
+
+                    grid.innerHTML = this.profiles.map(profile => 
+                        `<div class="profile-item" data-profile="${profile.name}">
+                            <div class="profile-name">${this.getProfileDisplayName(profile.name)}</div>
+                            <div class="profile-status">
+                                <span class="status-indicator ${profile.userChromeEnabled ? 'enabled' : 'disabled'}"></span>
+                                <span>${profile.userChromeEnabled ? 'Enabled' : 'Disabled'}</span>
+                            </div>
+                        </div>`
+                    ).join('');
+
+                    // Bind profile selection events
+                    grid.querySelectorAll('.profile-item').forEach(item => {
+                        item.addEventListener('click', (e) => {
+                            this.selectProfile(e.currentTarget.dataset.profile);
+                        });
+                    });
+
+                } catch (error) {
+                    document.getElementById('profileGrid').innerHTML = 
+                        '<div class="empty-state">❌ Error loading profiles<br><small>' + error.message + '</small></div>';
+                }
+            }
+
+            async loadTemplates() {
+                try {
+                    console.log('Loading templates...'); // Debug log
+                    const response = await fetch('/api/templates');
+                    
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    
+                    const contentType = response.headers.get('content-type');
+                    if (!contentType || !contentType.includes('application/json')) {
+                        const text = await response.text();
+                        console.error('Non-JSON response:', text.substring(0, 200));
+                        throw new Error('Server returned non-JSON response');
+                    }
+                    
+                    this.templates = await response.json();
+                    console.log('Templates loaded:', Object.keys(this.templates)); // Debug log
+                    this.updateTemplateGrid();
+                } catch (error) {
+                    console.error('Error loading templates:', error);
+                    this.updateStatus('⚠️ Could not load templates. Using defaults.', 'error');
+                    
+                    // Fallback templates
+                    this.templates = {
+                        chrome: {
+                            'Hide Tab Bar': '/* Hide the tab bar */\n#TabsToolbar {\n    visibility: collapse !important;\n}',
+                            'Minimal UI': '/* Minimal Firefox UI */\n#main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar {\n    opacity: 0;\n    pointer-events: none;\n}\n#main-window[tabsintitlebar="true"]:not([extradragspace="true"]) #TabsToolbar:hover {\n    opacity: 1;\n    pointer-events: auto;\n}',
+                            'Dark Theme': '/* Dark theme for Firefox UI */\n:root {\n    --toolbar-bgcolor: #2b2a33 !important;\n    --toolbar-color: #fbfbfe !important;\n    --tab-selected-bgcolor: #42414d !important;\n}\n\n#main-window {\n    background-color: #1c1b22 !important;\n}'
+                        },
+                        content: {
+                            'Dark Websites': '/* Dark theme for websites */\n@-moz-document url-prefix("http://"), url-prefix("https://") {\n    * {\n        background-color: #1a1a1a !important;\n        color: #e6e6e6 !important;\n        border-color: #444444 !important;\n    }\n}',
+                            'Reading Mode': '/* Comfortable reading mode */\n@-moz-document url-prefix("http://"), url-prefix("https://") {\n    body {\n        max-width: 800px !important;\n        margin: 0 auto !important;\n        line-height: 1.6 !important;\n        font-size: 16px !important;\n        padding: 20px !important;\n    }\n}'
+                        }
+                    };
+                    this.updateTemplateGrid();
+                }
+            }
+
+            updateTemplateGrid() {
+                const grid = document.getElementById('templateGrid');
+                const currentTemplates = this.templates[this.currentCSSType] || {};
+                
+                grid.innerHTML = Object.keys(currentTemplates).map(templateName => 
+                    `<div class="template-item" data-template="${templateName}">
+                        <div class="template-name">${templateName}</div>
+                    </div>`
+                ).join('');
+
+                // Bind template click events
+                grid.querySelectorAll('.template-item').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        this.applyTemplate(e.currentTarget.dataset.template);
+                    });
+                });
+            }
+
+            getProfileDisplayName(profileName) {
+                // Extract readable name from profile directory
+                const match = profileName.match(/^[a-z0-9]+\.(.+)$/);
+                return match ? match[1] : profileName;
+            }
+
+            async selectProfile(profileName) {
+                // Update UI
+                document.querySelectorAll('.profile-item').forEach(item => {
+                    item.classList.toggle('active', item.dataset.profile === profileName);
+                });
+
+                this.currentProfile = profileName;
+                
+                // Check if userChrome is enabled, and enable it if not
+                const profile = this.profiles.find(p => p.name === profileName);
+                if (profile && !profile.userChromeEnabled) {
+                    await this.enableUserChrome(profileName, false);
+                }
+                
+                this.updateButtons();
+                await this.loadCurrentCSS();
+                this.updateStatus(`Selected profile: ${this.getProfileDisplayName(profileName)}`);
+            }
+
+            switchCSSType(cssType) {
+                // Update UI
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.cssType === cssType);
+                });
+
+                // Show/hide info panels
+                document.getElementById('chromeInfo').classList.toggle('hidden', cssType !== 'chrome');
+                document.getElementById('contentInfo').classList.toggle('hidden', cssType !== 'content');
+
+                this.currentCSSType = cssType;
+                this.updateTemplateGrid();
+
+                if (this.currentProfile) {
+                    this.loadCurrentCSS();
+                }
+            }
+
+            async loadCurrentCSS() {
+                if (!this.currentProfile) return;
+
+                try {
+                    this.updateStatus('Loading CSS file...', 'info');
+                    
+                    const response = await fetch('/api/firefox/quick-access', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ 
+                            profileName: this.currentProfile, 
+                            cssType: this.currentCSSType 
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        document.getElementById('cssEditor').value = data.content || '';
+                        this.currentFileId = data.fileId;
+                        this.updateStatus('CSS loaded successfully', 'success');
+                    } else {
+                        throw new Error(data.error);
+                    }
+                } catch (error) {
+                    console.error('Error loading CSS:', error);
+                    this.updateStatus('Error loading CSS: ' + error.message, 'error');
+                }
+                
+                this.updateButtons();
+            }
+
+            applyTemplate(templateName) {
+                const templates = this.templates[this.currentCSSType];
+                const css = templates?.[templateName];
+                
+                if (css) {
+                    const editor = document.getElementById('cssEditor');
+                    
+                    if (templateName === 'Reset All') {
+                        editor.value = css;
+                    } else {
+                        const currentContent = editor.value.trim();
+                        if (currentContent) {
+                            editor.value = currentContent + '\n\n' + css;
+                        } else {
+                            editor.value = css;
+                        }
+                    }
+                    
+                    this.updateButtons();
+                    this.updateStatus(`Template applied: ${templateName}`, 'success');
+                }
+            }
+
+            async applyChanges() {
+                if (!this.currentProfile) {
+                    this.updateStatus('Please select a profile first', 'error');
+                    return;
+                }
+
+                try {
+                    this.updateStatus('Saving changes...', 'info');
+                    
+                    const content = document.getElementById('cssEditor').value;
+                    
+                    const response = await fetch('/api/file/save', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            fileId: this.currentFileId,
+                            content: content
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        this.updateStatus('✅ Changes saved successfully! Restart Firefox to see changes.', 'success');
+                        
+                        // Temporarily change button text
+                        const applyBtn = document.getElementById('applyBtn');
+                        const originalText = applyBtn.textContent;
+                        applyBtn.textContent = 'Saved!';
+                        applyBtn.classList.add('success');
+                        applyBtn.disabled = true;
+                        
+                        setTimeout(() => {
+                            applyBtn.textContent = originalText;
+                            applyBtn.classList.remove('success');
+                            this.updateButtons();
+                        }, 2000);
+                    } else {
+                        throw new Error(data.error);
+                    }
+                } catch (error) {
+                    this.updateStatus('❌ Error saving changes: ' + error.message, 'error');
+                }
+            }
+
+            async enableUserChrome(profileName, showStatus = true) {
+                try {
+                    if (showStatus) {
+                        this.updateStatus('⚙️ Enabling userChrome.css support...', 'info');
+                    }
+
+                    const response = await fetch('/api/firefox/enable-userchrome', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ profileName })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        let message = `✅ ${data.message}`;
+                        
+                        // Add details about what was modified
+                        if (data.filesModified && data.filesModified.length > 0) {
+                            message += ` (Modified: ${data.filesModified.join(', ')})`;
+                        }
+                        
+                        if (data.backupCreated) {
+                            message += ' • Backup created';
+                        }
+                        
+                        if (showStatus) {
+                            this.updateStatus(message, 'success');
+                        }
+                        
+                        // Update profile status in UI
+                        const profile = this.profiles.find(p => p.name === profileName);
+                        if (profile) {
+                            profile.userChromeEnabled = true;
+                            profile.enablementDetails = {
+                                action: data.action,
+                                filesModified: data.filesModified,
+                                backupCreated: data.backupCreated
+                            };
+                            
+                            // Update the status indicator
+                            const profileElement = document.querySelector(`[data-profile="${profileName}"]`);
+                            if (profileElement) {
+                                const indicator = profileElement.querySelector('.status-indicator');
+                                const statusText = profileElement.querySelector('.profile-status span:last-child');
+                                indicator.classList.remove('disabled');
+                                indicator.classList.add('enabled');
+                                statusText.textContent = 'Enabled';
+                                
+                                // Add tooltip with details
+                                profileElement.title = `userChrome.css enabled via ${data.action} in ${data.filesModified.join(', ')}`;
+                            }
+                        }
+                        
+                        return true;
+                    } else {
+                        throw new Error(data.error);
+                    }
+                } catch (error) {
+                    if (showStatus) {
+                        this.updateStatus('❌ Error enabling userChrome: ' + error.message, 'error');
+                    }
+                    return false;
+                }
+            }
+
+            async enableAllProfiles() {
+                const btn = document.getElementById('enableAllBtn');
+                btn.disabled = true;
+                btn.textContent = 'Enabling...';
+                
+                try {
+                    this.updateStatus('Enabling userChrome.css for all profiles...', 'info');
+                    
+                    const response = await fetch('/api/firefox/enable-userchrome-all', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        const { summary } = data;
+                        this.updateStatus(
+                            `✅ Processed ${summary.total} profiles: ${summary.enabled} enabled, ${summary.failed} failed`, 
+                            'success'
+                        );
+                        
+                        // Reload profiles to update status
+                        await this.loadProfiles();
+                    } else {
+                        throw new Error(data.error || 'Failed to enable profiles');
+                    }
+                } catch (error) {
+                    this.updateStatus('❌ Error enabling profiles: ' + error.message, 'error');
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = 'Enable All Profiles';
+                }
+            }
+
+            updateButtons() {
+                const hasProfile = this.currentProfile;
+                const hasContent = document.getElementById('cssEditor').value.trim().length > 0;
+                
+                document.getElementById('applyBtn').disabled = !hasProfile || !hasContent;
+                document.getElementById('loadBtn').disabled = !hasProfile;
+            }
+
+            updateStatus(message, type = '') {
+                const status = document.getElementById('status');
+                status.textContent = message;
+                status.className = `status ${type}`;
+                
+                // Auto-clear status after 5 seconds for success/info messages
+                if (type === 'success' || type === 'info') {
+                    setTimeout(() => {
+                        if (status.textContent === message) {
+                            status.textContent = '';
+                            status.className = 'status';
+                        }
+                    }, 5000);
+                }
+            }
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new FirefoxCSSCustomizer();
+        });
+    </script>
+</body>
+</html>
